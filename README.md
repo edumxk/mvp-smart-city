@@ -36,7 +36,7 @@ Mapa: Leaflet & React-Leaflet
 Gerenciamento de Estado: React Context API
 
 Build Tool: Vite
-
+```
 📁 Estrutura do Projeto
 /
 ├── public/
@@ -61,7 +61,7 @@ Build Tool: Vite
 │   ├── index.css                 # Configuração base do Tailwind
 │   └── main.jsx                  # Ponto de entrada, configuração das rotas
 └── tailwind.config.js          # Arquivo de configuração do Tailwind
-
+```
 🚀 Como Executar o Projeto
 Clone o repositório:
 
