@@ -1,30 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LogIn, UserPlus } from 'lucide-react';
 
 export default function Onboarding() {
   return (
-    <div className="bg-gradient-to-br from-brand-green-light/20 to-brand-blue/20 min-h-screen flex flex-col justify-center items-center p-6 text-center">
-      <img src="/assets/logo.png" alt="Logo VivaCidade" className="w-40 h-40 mb-8" />
-      <h1 className="text-5xl font-extrabold text-brand-green-dark mb-4">VivaCidade</h1>
-      <p className="text-lg text-brand-green-dark/80 mb-12 max-w-md">
+    <div className="min-h-screen flex flex-col justify-center items-center p-6 text-center bg-gray-50 font-sans">
+      
+      {/* --- Container estilizado para dar destaque à logo --- */}
+      <div className="bg-white p-4 rounded-full shadow-xl mb-8">
+        <img 
+          src="/assets/logo.png" 
+          alt="Logo VivaCidade" 
+          className="w-32 h-32" // Tamanho consistente
+        />
+      </div>
+
+      <h1 className="text-5xl font-extrabold text-green-800 mb-4">
+        VivaCidade
+      </h1>
+      <p className="text-lg text-gray-600 mb-12 max-w-md">
         Juntos, construindo uma cidade melhor. Participe!
       </p>
       
-      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
-        {/* Botão para Entrar (Login) */}
+      <div className="flex flex-col gap-4 w-full max-w-xs">
+        {/* --- Botão para Entrar (Login) - Ação Principal --- */}
         <Link
           to="/login"
-          className="bg-brand-yellow hover:bg-yellow-400 text-brand-green-dark font-bold py-3 px-8 rounded-full text-lg shadow-md transition-transform transform hover:scale-105 w-full"
+          className="flex items-center justify-center gap-2 w-full bg-green-800 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-md transition-transform transform hover:scale-105"
         >
-          Entrar
+          <LogIn size={20} />
+          <span>Entrar</span>
         </Link>
         
-        {/* Botão para Registrar */}
+        {/* --- Botão para Registrar - Ação Secundária --- */}
         <Link
           to="/register"
-          className="bg-white hover:bg-gray-100 text-brand-green-dark font-bold py-3 px-8 rounded-full text-lg shadow-md transition-transform transform hover:scale-105 w-full border-2 border-brand-green-light/50"
+          className="flex items-center justify-center gap-2 w-full bg-amber-400 hover:bg-amber-500 text-green-900 font-bold py-3 px-8 rounded-full text-lg shadow-md transition-transform transform hover:scale-105"
         >
-          Registrar
+          <UserPlus size={20} />
+          <span>Registrar</span>
         </Link>
       </div>
     </div>

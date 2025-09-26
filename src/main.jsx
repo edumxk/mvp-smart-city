@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '/src/contexts/AuthContext.jsx';
 import { DataProvider } from '/src/contexts/DataContext.jsx';
+import NewReport from "./pages/NewReport.jsx";
+
 
 import App from './App';
 import './index.css';
@@ -27,7 +29,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-
             {/* Rotas Protegidas */}
             <Route
               path="/"
@@ -40,6 +41,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path="home" element={<Home />} />
               <Route path="my-reports" element={<MyReports />} /> {/* Nova Rota */}
               <Route path="profile" element={<Profile />} />
+              <Route path="new-report" element={<NewReport />} /> {/* nova rota */}
             </Route>
           </Routes>
         </DataProvider>

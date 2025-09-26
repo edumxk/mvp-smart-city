@@ -1,3 +1,4 @@
+// src/contexts/AuthContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -5,8 +6,6 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  // IMPORTANTE: O useNavigate() agora funciona porque o AuthProvider
-  // será renderizado DENTRO do BrowserRouter em main.jsx
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,15 +15,23 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const register = (nickname) => {
-    const userData = { nickname };
+  // --- ATUALIZADO: register agora aceita mais dados ---
+  const register = (nickname, avatar, contact) => {
+    // Em um app real, aqui você verificaria se o nickname já existe
+    const userData = { nickname, avatar, contact };
     localStorage.setItem('vivaCidadeUser', JSON.stringify(userData));
     setUser(userData);
     navigate('/home');
   };
 
   const login = (nickname) => {
-    const userData = { nickname };
+    // Em um app real, você buscaria os dados do usuário no backend
+    // Para nossa simulação, vamos criar um usuário "genérico" ao logar
+    const userData = { 
+      nickname, 
+      avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${nickname}`,
+      contact: ''
+    };
     localStorage.setItem('vivaCidadeUser', JSON.stringify(userData));
     setUser(userData);
     navigate('/home');
@@ -33,7 +40,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('vivaCidadeUser');
     setUser(null);
-    navigate('/onboarding');
+    navigate('/onboarding'); // Redireciona para a tela inicial
   };
 
   const value = { user, register, login, logout };
@@ -48,4 +55,3 @@ export function useAuth() {
   }
   return context;
 }
-
