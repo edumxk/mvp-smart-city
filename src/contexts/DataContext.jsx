@@ -165,7 +165,7 @@ export function DataProvider({ children }) {
 
   const resolveReport = (reportId) => {
     setReports(prevReports => prevReports.map(report => report.id === reportId ? { ...report, status: 'Resolvido' } : report));
-    showNotification("Reporte marcado como resolvido!", user.nickname);
+    showNotification("Reporte marcado como resolvido!", user.nickname, false, '/sounds/points2.mp3');
   };
   
   const getRanking = () => [...users].sort((a, b) => b.points - a.points);
