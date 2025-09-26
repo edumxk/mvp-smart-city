@@ -43,7 +43,7 @@ export default function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 relative">
-      <Link to="/onboarding" className="absolute top-6 left-6 flex items-center gap-2 text-gray-500 hover:text-green-800 font-semibold transition-colors">
+      <Link to="/" className="absolute top-6 left-6 flex items-center gap-2 text-gray-500 hover:text-green-800 font-semibold transition-colors">
         <ArrowLeft size={20} /><span>Voltar</span>
       </Link>
       <div className="w-full max-w-md">
