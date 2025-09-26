@@ -1,9 +1,8 @@
-// src/pages/Profile.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { useData } from '../contexts/DataContext.jsx';
-import { LogOut, ListChecks } from 'lucide-react';
+import { LogOut, ListChecks, LayoutDashboard } from 'lucide-react'; // Ícone adicionado
 
 const AchievementCard = ({ achievement, userProgressData }) => {
     const currentLevel = userProgressData?.level ?? -1;
@@ -27,7 +26,7 @@ const AchievementCard = ({ achievement, userProgressData }) => {
 export default function Profile() {
   const { user, logout } = useAuth();
   const { users, reports, allAchievements, getRanking } = useData();
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
   const ranking = getRanking();
   const currentUserData = users.find(u => u.nickname === user.nickname);
   const userReports = reports.filter(r => r.author === user.nickname);
@@ -47,14 +46,21 @@ export default function Profile() {
           </div>
       </div>
 
-      {/* --- BOTÃO DE ATALHO PARA MEUS REPORTES --- */}
-      <div className="mb-8 px-2">
+      {/* --- BOTÕES DE AÇÃO --- */}
+      <div className="mb-8 px-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
         <button
           onClick={() => navigate('/my-reports')}
           className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-green-800 font-bold py-3 px-4 rounded-xl shadow-sm transition-colors border border-gray-200"
         >
           <ListChecks size={20} />
-          <span>Ver Meus Reportes</span>
+          <span>Meus Reportes</span>
+        </button>
+        <button
+          onClick={() => navigate('/dashboard')}
+          className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-blue-800 font-bold py-3 px-4 rounded-xl shadow-sm transition-colors border border-gray-200"
+        >
+          <LayoutDashboard size={20} />
+          <span>Painel do Gestor</span>
         </button>
       </div>
 

@@ -14,6 +14,7 @@ import Home from './pages/Home.jsx';
 import NewReport from "./pages/NewReport.jsx";
 import MyReports from './pages/MyReports.jsx';
 import Profile from './pages/Profile.jsx';
+import Dashboard from './pages/Dashboard.jsx'; // Nova importação
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -22,8 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <DataProvider>
           <Routes>
-            {/* --- ALTERAÇÃO APLICADA AQUI --- */}
-            {/* A rota "/" agora renderiza diretamente a página de Onboarding */}
             <Route path="/" element={<Onboarding />} />
             
             {/* Rotas Públicas */}
@@ -42,6 +41,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path="/new-report" element={<NewReport />} />
               <Route path="/my-reports" element={<MyReports />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/dashboard" element={<Dashboard />} /> {/* Nova Rota */}
             </Route>
             
           </Routes>
