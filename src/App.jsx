@@ -1,13 +1,9 @@
-// src/App.jsx
 import React from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { Map, User, PlusCircle } from 'lucide-react';
-import { useData } from './contexts/DataContext.jsx';
-import { useAuth } from './contexts/AuthContext.jsx'; // Importar o useAuth
-import NotificationPopup from './components/NotificationPopup.jsx';
+import NotificationManager from './components/NotificationManager.jsx'; // Importar o novo gestor
 
 function NavBar() {
-  // ... (componente NavBar permanece o mesmo)
   const navigate = useNavigate();
   return (
     <nav className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-sm z-10">
@@ -29,19 +25,11 @@ function NavBar() {
 }
 
 function App() {
-  const { notifications } = useData();
-  const { user } = useAuth(); // Pegar o usuário logado
-
-  // --- FILTRO DE NOTIFICAÇÕES APLICADO AQUI ---
-  // Renderiza apenas as notificações destinadas ao usuário atual
-  const myNotifications = user ? notifications.filter(n => n.recipient === user.nickname) : [];
-
   return (
     <div className="font-sans bg-gray-50">
-      <div className="notification-container fixed top-0 left-0 w-full h-full pointer-events-none z-50">
-        {myNotifications.map(notif => (
-          <NotificationPopup key={notif.id} message={notif.message} />
-        ))}
+      {/* Container para garantir que as notificações fiquem por cima de tudo, incluindo o mapa */}
+      <div className="relative z-[1000]">
+        <NotificationManager />
       </div>
       
       <main className="pb-24">
@@ -54,3 +42,4 @@ function App() {
 }
 
 export default App;
+
