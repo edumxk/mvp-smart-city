@@ -1,4 +1,3 @@
-// src/contexts/AuthContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,23 +14,8 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // --- ATUALIZADO: register agora aceita mais dados ---
-  const register = (nickname, avatar, contact) => {
-    // Em um app real, aqui você verificaria se o nickname já existe
-    const userData = { nickname, avatar, contact };
-    localStorage.setItem('vivaCidadeUser', JSON.stringify(userData));
-    setUser(userData);
-    navigate('/home');
-  };
-
-  const login = (nickname) => {
-    // Em um app real, você buscaria os dados do usuário no backend
-    // Para nossa simulação, vamos criar um usuário "genérico" ao logar
-    const userData = { 
-      nickname, 
-      avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${nickname}`,
-      contact: ''
-    };
+  // Funções simplificadas: apenas gerenciam o estado da sessão
+  const login = (userData) => {
     localStorage.setItem('vivaCidadeUser', JSON.stringify(userData));
     setUser(userData);
     navigate('/home');
@@ -40,10 +24,16 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('vivaCidadeUser');
     setUser(null);
-    navigate('/onboarding'); // Redireciona para a tela inicial
+    navigate('/onboarding');
   };
 
-  const value = { user, register, login, logout };
+  // A função de registro agora é a mesma que login, pois a criação do usuário
+  // acontece na página de registro antes de chamar esta função.
+  const register = (userData) => {
+    login(userData);
+  };
+
+  const value = { user, login, logout, register };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
@@ -55,3 +45,4 @@ export function useAuth() {
   }
   return context;
 }
+
